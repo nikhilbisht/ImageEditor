@@ -35,7 +35,7 @@ class ImgArea extends Canvas{
   boolean actionRotated;
   boolean actionDraw;
   boolean drawn;
-  MediaTracker mt;
+  MediaTracker mt;//used to track the image
   static Color c;
   Color colorTextDraw;
   Robot rb;
@@ -180,7 +180,7 @@ class ImgArea extends Canvas{
  
 }
  
- 
+ //w is width entered by the user, h is the height entered by the user
  public void ImgResize(int w,int h){
    BufferedImage bi=(BufferedImage)createImage(w,h);
    Graphics2D g2d=(Graphics2D)bi.createGraphics();
