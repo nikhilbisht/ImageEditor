@@ -84,7 +84,7 @@ class ImgArea extends Canvas{
 	     g2d.drawImage(BufferedImg,0,0,null); 
 	     
 		    }}
-	   g2d.dispose(); 
+	   g2d.dispose(); //it will clear the graphic 2d object
 	   
 	  }
 
@@ -183,12 +183,12 @@ class ImgArea extends Canvas{
  //w is width entered by the user, h is the height entered by the user
  public void ImgResize(int w,int h){
    BufferedImage bi=(BufferedImage)createImage(w,h);
-   Graphics2D g2d=(Graphics2D)bi.createGraphics();
+   Graphics2D g2d=(Graphics2D)bi.createGraphics();////resize the update image
    
 
    if(actionSlided || actionTransparent || actionRotated ||drawn)
     g2d.drawImage(bufimg,0,0,w,h,null);
- 
+  //resize the original image
    else
     g2d.drawImage(BufferedImg,0,0,w,h,null);
    bufimg=bi;
