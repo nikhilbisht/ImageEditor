@@ -8,7 +8,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Main extends JFrame implements ActionListener{
-	 ImgArea ima;
+	 ImgArea ima;//object of the class ImgArea where image is going to load
 	 JFileChooser Choose; 
 	 JMenuBar mainmenu;
 	 JMenu menu;
@@ -29,7 +29,7 @@ public class Main extends JFrame implements ActionListener{
 	  ima=new ImgArea();
 	  Container cont=getContentPane();
 	  cont.add(ima,BorderLayout.CENTER );  
-	  mainmenu=new JMenuBar();
+	  mainmenu=new JMenuBar();//specifying the menubar
 	  //for file Menu
 	  menu=new JMenu("File");
 	  menu.setMnemonic(KeyEvent.VK_F);
@@ -117,9 +117,9 @@ public class Main extends JFrame implements ActionListener{
 	//ImageResize class allows to resize the image by resizing width and height of image
 	 public class ImgResized extends JFrame implements ActionListener {
 	  JPanel panel;
-	  JTextField textWidth;
-	  JTextField textHeight;
-	  JButton Okbt;
+	  JTextField textWidth;//textfield where user going to enter width for image resize
+	  JTextField textHeight;//textfield where user going to enter height for image resize
+	  JButton Okbt;//ok button for confirmation that user wants to convert into desired height and width of an image
 	  ImgResized(){
 	  setTitle("Image resize");
 	  //setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -154,31 +154,7 @@ public class Main extends JFrame implements ActionListener{
 	   textHeight.setEnabled(enabled);
 	   Okbt.setEnabled(enabled);
 	  }
-	  
-	  public void actionPerformed(ActionEvent e){
-	   if(e.getSource()==Okbt){
-	    ima.setActionResized(true);     
-	    ima.ImgResize(Integer.parseInt(textWidth.getText()),Integer.parseInt(textHeight.getText()));
-	    enableSaving(true);
-	    ima.repaint();
-	    }
-	  }
-	  
-	  public class KeyList extends KeyAdapter{
-	     public void keyTyped(KeyEvent ke){
-	 
-	    char c = ke.getKeyChar(); 
-	    int intkey=(int)c;
-	    if(!(intkey>=48 && intkey<=57 || intkey==8 || intkey==127))
-	     {
-	     ke.consume();
-	  
-	      }  
-	     
-	   }
-	  
-	  } 
-	 }
+		 //if user select Open button for selecting the image
 	 public void actionPerformed(ActionEvent e){
 
 	  JMenuItem source = (JMenuItem)(e.getSource());
@@ -202,6 +178,32 @@ public class Main extends JFrame implements ActionListener{
 	     
 	  } 
 	      
+	  //event handling for OK button of Image Resize class
+	  public void actionPerformed(ActionEvent e){
+	   if(e.getSource()==Okbt){//if user clicks the OK button then following functions are called
+	    ima.setActionResized(true);     
+	    ima.ImgResize(Integer.parseInt(textWidth.getText()),Integer.parseInt(textHeight.getText()));//converting the input of user into integer
+	    enableSaving(true);
+	    ima.repaint();
+	    }
+	  }
+	  //handling keyboard events
+	  public class KeyList extends KeyAdapter{
+	     public void keyTyped(KeyEvent ke){
+	 
+	    char c = ke.getKeyChar(); 
+	    int intkey=(int)c;
+	    if(!(intkey>=48 && intkey<=57 || intkey==8 || intkey==127))
+	     {
+	     ke.consume();
+	  
+	      }  
+	     
+	   }
+	  
+	  } 
+	 }
+	
 
 	 public void setImage(){
 	  
