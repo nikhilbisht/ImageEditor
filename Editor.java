@@ -63,15 +63,15 @@ class ImgArea extends Canvas{
 	  }
 	  
 	  public void paint(Graphics g){
-	   Graphics2D g2d=(Graphics2D)g;   
+	   Graphics2D g2d=(Graphics2D)g;   //it will create graphics 2d object
 	   if(imgLoad){
 
 		    
 		    if(actionSlided || actionResized || actionTransparent || actionRotated || drawn ){
 		     x=mX-bufimg.getWidth()/2;
 		     y=mY-bufimg.getHeight()/2;
-		     g2d.translate(x,y);  
-		     g2d.drawImage(bufimg,0,0,null); 
+		     g2d.translate(x,y);  // it will move to coordinate x and y
+		     g2d.drawImage(bufimg,0,0,null); // it will draw the image
 		     
 		     }
 	 
@@ -100,7 +100,7 @@ class ImgArea extends Canvas{
 
 	
 
-	 
+	//the KeyList class expands KeyAdapter so that it can handle key events 
 	  class KeyList extends KeyAdapter{
 	   public void keyPressed(KeyEvent e){
 	    if(e.getKeyCode()==27){ 
@@ -112,22 +112,23 @@ class ImgArea extends Canvas{
 	    }
 	   }
 
-  
+ //it will prepare the image so that it can be edited and display on the screen 
   public void prepareImg(String filename){
    
    try{
   
-   mt=new MediaTracker(this);    
+   mt=new MediaTracker(this);    // it will track the image loading processs
    Img=Toolkit.getDefaultToolkit().getImage(filename); 
    mt.addImage(Img,0);
     mt.waitForID(0); 
     
    int width=Img.getWidth(null);
    int height=Img.getHeight(null);
-   
+   //creating buffered image from the image so any change to the image can be made
    BufferedImg=createBufferedImageFromImage(Img,width,height,false);
    
    bufimg = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);  
+	   //the update image data is stored in the buffered image   
    imgLoad=true;
    }catch(Exception e){System.exit(-1);}
   }
@@ -157,6 +158,7 @@ class ImgArea extends Canvas{
   actionSlided=value;
  }
 
+	//This method will initialize all the variables
  public void initialize(){
 	   imgLoad=false; 
 	   actionSlided=false;
