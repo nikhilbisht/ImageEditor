@@ -1,4 +1,6 @@
- //Save the image file
+public class SaveUpdatedImage{
+
+//Save the image file
  public void saveToFile(String filename){
   String ftype=filename.substring(filename.lastIndexOf('.')+1);
   try{
@@ -116,3 +118,8 @@
     
   } 
       
+      public void static main(String[] args)
+      {SaveUpdatedImage save=new SaveUpdatedImage();
+      }
+      
+      }
