@@ -8,6 +8,7 @@ public class ImgBlurrness extends JFrame implements ChangeListener{
 		
 		
 		ImgBlurrness(){
+			//for window closing event
 			addWindowListener(new WindowAdapter(){
 				public void windowClosing(WindowEvent e){
 					dispose();
@@ -17,7 +18,7 @@ public class ImgBlurrness extends JFrame implements ChangeListener{
 			Container cont=getContentPane();
 			slider=new JSlider(-4,4,0);//creating a slider
 			slider.setEnabled(false);
-			slider.addChangeListener(this);
+			slider.addChangeListener(this);//event handling for slider
 			cont.add(slider, BorderLayout.CENTER);
 			slider.setEnabled(true);
 			setTitle("Image Blurrness");
