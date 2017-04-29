@@ -39,7 +39,7 @@
 			
 		}	
      public void setActionSlided(boolean value){//setting the value of setActionSlided to true
-          setActionSlided=true;
+        ActionSlided=true;
           }
           
      public BufferedImage processImage(){
