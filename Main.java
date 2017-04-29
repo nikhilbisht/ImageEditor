@@ -19,6 +19,7 @@ public class Main extends JFrame implements ActionListener{
 	 JMenuItem exit; 
 	 JMenuItem bright; 
 	 JMenuItem compress; 
+	 JMenuItem blur;
 	 JMenuItem resize;
 	 JMenuItem rotate;
 	 JMenuItem transparent;
@@ -47,6 +48,7 @@ public class Main extends JFrame implements ActionListener{
 	  save.setMnemonic(KeyEvent.VK_V);
 	  save.addActionListener(this);  
 
+
 	  exit=new JMenuItem("Exit");
 	  exit.setMnemonic(KeyEvent.VK_X);
 	  exit.addActionListener(this);
@@ -60,6 +62,11 @@ public class Main extends JFrame implements ActionListener{
 	  bright=new JMenuItem("Image brightness");
 	  bright.setMnemonic(KeyEvent.VK_B);
 	  bright.addActionListener(this);
+		 
+	  blur=new JMenuItem("Image Blur");
+	  blur.setMnemonic(KeyEvent.VK_V);
+	  blur.addActionListener(this);  
+
 
 	  addingtext=new JMenuItem("Add text on image");
 	  addingtext.setMnemonic(KeyEvent.VK_A);
@@ -84,12 +91,13 @@ public class Main extends JFrame implements ActionListener{
 	  cancel=new JMenuItem("Cancel editing");
 	  cancel.setMnemonic(KeyEvent.VK_L);
 	  cancel.addActionListener(this);
-
+//adding button to editmenu
 	  editmenu.add(addingtext);
 	  editmenu.add(bright);
 	  editmenu.add(compress);
 	  editmenu.add(resize);
 	  editmenu.add(rotate);
+          editmenu.add(blur);
 	  editmenu.add(transparent);
 	  editmenu.add(cancel);
 
