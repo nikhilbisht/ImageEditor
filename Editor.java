@@ -29,6 +29,7 @@ class ImgArea extends Canvas{
   int y;
   static boolean imgLoad;
   boolean actionSlided;
+  boolean actionBlur;
   boolean actionResized;
   boolean actionCompressed;
   boolean actionTransparent;
@@ -67,7 +68,7 @@ class ImgArea extends Canvas{
 	   if(imgLoad){
 
 		    
-		    if(actionSlided || actionResized || actionTransparent || actionRotated || drawn ){
+		    if(actionSlided || actionResized || actionTransparent || actionRotated ||acionBlur ||drawn ){
 		     x=mX-bufimg.getWidth()/2;
 		     y=mY-bufimg.getHeight()/2;
 		     g2d.translate(x,y);  // it will move to coordinate x and y
@@ -163,6 +164,7 @@ class ImgArea extends Canvas{
 	   imgLoad=false; 
 	   actionSlided=false;
 	   actionResized=false;
+	   actionBlur=false;
 	   actionCompressed=false;
 	   actionTransparent=false;
 	   actionRotated=false;
@@ -181,6 +183,16 @@ class ImgArea extends Canvas{
  }
  
 }
+	public BufferedImage processImage(){
+	 float[] blurMatrix=new float[16];// creating an array blurMatrix of type float
+	 for (int i = 0; i < 16; i++)
+			{blurMatrix[i] = 1.0f/16.0f;//setting up an array of values for the kernel
+			}
+	 Kernel kernel=new Kernel(4, 4, blurMatrix);//creating kernel object
+	    BufferedImageOp op = new ConvolveOp(kernel, ConvolveOp.EDGE_NO_OP, null );/*constructing a ConvolveOp object from the kernel and use it for filtering*/
+		bufimg = new BufferedImage(BufferedImg.getWidth(),BufferedImg.getHeight(),BufferedImage.TYPE_INT_RGB);//it will create a new image
+		return op.filter(BufferedImg, bufimg);//calling filter method to transform an image into another
+ }
  
  //w is width entered by the user, h is the height entered by the user
  public void ImgResize(int w,int h){
